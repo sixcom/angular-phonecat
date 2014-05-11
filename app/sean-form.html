@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en" ng-app="seanApp">
+<head>
+  <meta charset="utf-8">
+  <title>Google Phone Gallery</title>
+  <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" href="css/app.css">
+   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
+  
+</head>
+<body ng-controller="BoxCtrl">
+  <form name="test_form" >
+    <label>a Value</label>
+    <input type="number" name="a" required ng-model="a"  />
+
+    <br/>
+
+    <label>b Value</label>
+    <input type="email" name="b" required ng-model="b" ng-minlength="2" />
+
+    <br/>
+
+    <label>c Value (checkbox)</label>
+    <input type="checkbox" name="c" ng-model="c" ng-true-value="AA" ng-false-value="BB" />
+    <span>{{ c }}</span>
+
+    <br />
+
+    <label>d Value (select)</label>
+
+    <div ng-init="options=[{name: 'AA', v: '00value'}, {name: 'BB', v: '11value'}]; d=options[1].v;">
+      <select ng-model="d" ng-options="x.v as x.name for x in options" ng-change="show()">
+      </select>
+    </div>
+
+    <br />
+    Error
+    <span ng-click="see()">{{ test_form.$error }}</span>
+  </form>
+  
+
+    <script>
+        var seanApp = angular.module('seanApp', ['myMod']);
+
+        var myMod = angular.module('myMod', []);
+
+        myMod.controller('BoxCtrl', ['$scope', '$http', '$element', function($scope, $http, $element) {
+
+            $scope.see = function(){
+              console.log($scope.test_form.$error);
+            }
+
+            $scope.show = function(){
+              console.log('<select> value:' + $scope.d);
+            }
+
+        }]);                            
+
+    </script>
+
+
+</body>
+</html>
+
+

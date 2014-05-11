@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en" ng-app="seanApp">
+<head>
+  <meta charset="utf-8">
+  <title>Google Phone Gallery</title>
+  <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" href="css/app.css">
+   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
+  
+</head>
+<body ng-controller="BoxCtrl">
+    <div style="width: 100px; height: 100px; background-color: red;" ng-click="click()"></div>
+    <p>{{ w }} x {{ h }}</p>
+    <p>W: <input type="text" ng-model="w" /></p>
+    <p>H: <input type="text" ng-model="h" /></p>
+    <script>
+        var seanApp = angular.module('seanApp', ['myMod']);
+
+        var myMod = angular.module('myMod', []);
+
+        myMod.controller('BoxCtrl', ['$scope', '$http', '$element', function($scope, $http, $element) {
+            
+            //$element 就是一个 jQuery 对象
+            var e = $element.children().eq(0);
+            $scope.w = e.width();
+            $scope.h = e.height();
+
+            $scope.click = function(){
+                $scope.w = parseInt($scope.w) + 10;
+                $scope.h = parseInt($scope.h) + 10;
+            }
+
+            $scope.$watch('w',
+                function(to, from){
+                    e.width(to);
+                }
+            );
+
+            $scope.$watch('h',
+                function(to, from){
+                    e.height(to);
+                }
+            );
+
+
+        }]);                            
+
+    </script>
+
+</body>
+</html>
+
+

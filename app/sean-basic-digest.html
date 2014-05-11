@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en" ng-app="seanApp">
+<head>
+  <meta charset="utf-8">
+  <title>Google Phone Gallery</title>
+  <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" href="css/app.css">
+   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
+  
+</head>
+<body ng-controller="BoxCtrl">
+    <p>W: <input type="text" ng-model="a" /></p>
+    <p id="test" >{{ a }}</p>
+
+     <div style="width: 10px; height: 10px; background-color: red" ng-style="style">
+    <script>
+        var seanApp = angular.module('seanApp', ['myMod']);
+
+        var myMod = angular.module('myMod', []);
+
+        myMod.controller('BoxCtrl', ['$scope', '$http', '$element', function($scope, $http, $element) {
+
+            $scope.a = '111';
+
+            $scope.style = {width: $scope.a + 'px'};
+
+        }]);                            
+
+    </script>
+
+    <script>
+        // Run in consoles
+        // $('#test').scope().a = '12345';
+        // $('#test').scope().$digest();
+    </script>
+</body>
+</html>
+
+
